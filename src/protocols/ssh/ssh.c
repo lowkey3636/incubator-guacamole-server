@@ -134,7 +134,7 @@ static guac_common_ssh_user* guac_ssh_get_user(guac_client* client) {
         /* Get password if not provided */
         if (settings->password == NULL)
             settings->password = guac_terminal_prompt(ssh_client->term,
-                    "Password: ", false);
+                    "git test Password: ", false);
 
         /* Set provided password */
         guac_common_ssh_user_set_password(user, settings->password);
