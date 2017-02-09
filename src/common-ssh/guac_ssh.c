@@ -276,10 +276,10 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
     if (num_prompts == 1) {
         //password = guac_terminal_prompt(term,"password again111? ", false);
         if(common_session->kbcount == 0){
-            responses[0].text = strdup(password);
+            responses[0].text = password;
             responses[0].length = strlen(password);
         }else{
-            responses[0].text = strdup(common_session->pwd);
+            responses[0].text = common_session->pwd;
             responses[0].length = strlen(common_session->pwd);
         }
         guac_client_log(client, GUAC_LOG_INFO,"responses[0].text:   [%s] ",responses[0].text);
