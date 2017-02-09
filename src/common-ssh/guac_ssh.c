@@ -538,6 +538,10 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
     return common_session;
 
 }
+//TODO
+int guac_common_ssh_authenticate_again(guac_common_ssh_session* common_session){
+    return guac_common_ssh_authenticate(common_session);
+}
 
 void guac_common_ssh_destroy_session(guac_common_ssh_session* session) {
 
