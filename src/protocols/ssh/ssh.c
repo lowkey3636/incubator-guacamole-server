@@ -224,7 +224,7 @@ void* ssh_client_thread(void* data) {
      if(guac_common_ssh_authenticate_reconnect(ssh_client->session)){
          guac_client_log(client, GUAC_LOG_INFO,"###again error : 1" );
          guac_client_log(client, GUAC_LOG_INFO, "##########authenticate:::  %i#########",ssh_client->session->authenticate_status);
-         free(ssh_client->session);
+         //free(ssh_client->session);
          //close(fd);
      }
 
