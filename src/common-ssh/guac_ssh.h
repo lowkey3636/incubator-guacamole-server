@@ -101,7 +101,7 @@ void guac_common_ssh_uninit();
  *     if the connection or authentication were not successful.
  */
 guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
-        const char* hostname, const char* port, guac_common_ssh_user* user);
+        const char* hostname, const char* port, guac_common_ssh_user* user,char* pwd);
 
 /**
  * Disconnects and destroys the given SSH session, freeing all associated

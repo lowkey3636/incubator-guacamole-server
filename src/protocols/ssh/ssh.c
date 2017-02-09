@@ -218,10 +218,13 @@ void* ssh_client_thread(void* data) {
     /* Get user and credentials */
     ssh_client->user = guac_ssh_get_user(client);
     /* Open SSH session */
-    ssh_client->session = guac_common_ssh_create_session(client, settings->hostname, settings->port, ssh_client->user);
+    char* pwd = guac_terminal_prompt(ssh_client->term,"password again? 1", false)
+    ssh_client->session = guac_common_ssh_create_session(client, settings->hostname, settings->port, ssh_client->user,pwd);
     guac_client_log(client, GUAC_LOG_INFO, "##########first authenticate:::  %i#########",ssh_client->session->authenticate_status);
+
+
     //TODO chenz2
-    settings->password = guac_terminal_prompt(ssh_client->term,"password again? ", false);
+    settings->password = guac_terminal_prompt(ssh_client->term,"password again? 2 ", false);
     guac_common_ssh_user_set_password(ssh_client->user, settings->password);
      if(guac_common_ssh_authenticate_reconnect(ssh_client->session)){
          guac_client_log(client, GUAC_LOG_INFO,"###again error : 1" );
