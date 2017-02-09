@@ -282,7 +282,7 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
             responses[0].text = strdup(common_session->pwd);
             responses[0].length = strlen(common_session->pwd);
         }
-
+        guac_client_log(client, GUAC_LOG_INFO,"responses[0].text:   [%s] ",responses[0].text);
     }
 
     else{
