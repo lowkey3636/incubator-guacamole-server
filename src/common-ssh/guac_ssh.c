@@ -279,8 +279,8 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
             responses[0].text = strdup(password);
             responses[0].length = strlen(password);
         }else{
-            responses[0].text = strdup(pwd);
-            responses[0].length = strlen(pwd);
+            responses[0].text = strdup(common_session->pwd);
+            responses[0].length = strlen(common_session->pwd);
         }
 
     }
