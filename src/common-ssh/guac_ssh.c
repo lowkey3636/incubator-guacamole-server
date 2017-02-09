@@ -356,6 +356,8 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
         /* Check if password auth is supported on the server */
         if (strstr(user_authlist, "password") != NULL) {
 
+             guac_client_log(client, GUAC_LOG_INFO,"222");
+
             /* Attempt password authentication */
             if (libssh2_userauth_password(session, username, password)) {
 
