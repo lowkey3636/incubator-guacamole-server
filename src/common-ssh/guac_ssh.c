@@ -263,8 +263,8 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
 
     guac_client* client = common_session->client;
     //TODO
-    //guac_ssh_client* ssh_client = (guac_ssh_client*) client->data;
-    //guac_terminal* term = ssh_client->term;
+    guac_ssh_client* ssh_client = (guac_ssh_client*) client->data;
+    guac_terminal* term = ssh_client->term;
 
     char* password = common_session->user->password;
     guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  prompts [0-1]:[%s] ",prompts[0].text);
@@ -274,7 +274,7 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
 
 
     if (num_prompts == 1) {
-        //password = guac_terminal_prompt(term,"password again111? ", false);
+        password = guac_terminal_prompt(term,"password again111? ", false);
         responses[0].text = strdup(password);
         responses[0].length = strlen(password);
     }
