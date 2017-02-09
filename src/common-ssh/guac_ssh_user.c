@@ -57,14 +57,6 @@ void guac_common_ssh_user_set_password(guac_common_ssh_user* user,
     user->password = strdup(password);
 
 }
-void guac_common_ssh_user_set_another_password(guac_common_ssh_user* user,
-        const char* another_password) {
-
-    /* Replace current password with given value */
-    free(user->another_password);
-    user->another_password = strdup(another_password);
-
-}
 
 int guac_common_ssh_user_import_key(guac_common_ssh_user* user,
         char* private_key, char* passphrase) {
