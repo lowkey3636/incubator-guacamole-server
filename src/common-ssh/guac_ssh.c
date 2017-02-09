@@ -356,6 +356,7 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
         //TODO
         if (strstr(user_authlist, "password") != NULL  || strstr(user_authlist, "keyboard-interactive") != NULL ) {
 
+            guac_client_log(client, GUAC_LOG_INFO,"chenz2:start auth list:   [%s]",user_authlist);
              guac_client_log(client, GUAC_LOG_INFO,"chenz2:start auth!!!   [%s]",password);
 
             /* Attempt password authentication */
