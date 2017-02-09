@@ -265,17 +265,19 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
 
     /* Send password if only one prompt */
     if (num_prompts == 1) {
+        //直接拿session里面的密码?
+        //那就不对了,应该 在跟用户要一次密码. 在验证
         char* password = common_session->user->password;
         responses[0].text = strdup(password);
         responses[0].length = strlen(password);
     }
 
     /* If more than one prompt, a single password is not enough */
-    else
+    else{
         guac_client_log(client, GUAC_LOG_WARNING,
-                "Unsupported number of keyboard-interactive prompts: %i",
-                num_prompts);
-
+                        "Unsupported number of keyboard-interactive prompts: %i",
+                        num_prompts);
+    }
 }
 
 /**
@@ -348,6 +350,9 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
     /* Authenticate with password, if provided */
     else if (password != NULL) {
 
+        //如果密码不为空,那么 就去校验.
+       .
+
         /* Check if password auth is supported on the server */
         if (strstr(user_authlist, "password") != NULL) {
 
@@ -366,8 +371,8 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
 
             /* Password authentication succeeded */
             return 0;
-
         }
+        //还是要你去输入密码
 
         /* Check if keyboard-interactive auth is supported on the server */
         if (strstr(user_authlist, "keyboard-interactive") != NULL) {
@@ -389,7 +394,6 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
 
             /* Keyboard-interactive authentication succeeded */
             return 0;
-
         }
 
         /* No known authentication types available */
@@ -521,9 +525,12 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
 
     /* Attempt authentication */
     if (guac_common_ssh_authenticate(common_session)) {
-        free(common_session);
-        close(fd);
-        return NULL;
+        //认证失败 释放掉session内存
+        client->settings->password = NULL;
+        return common_session;
+        //free(common_session);
+        //close(fd);
+        //return NULL;
     }
 
     /* Return created session */

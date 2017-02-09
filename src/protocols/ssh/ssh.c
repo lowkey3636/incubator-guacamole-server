@@ -214,6 +214,7 @@ void* ssh_client_thread(void* data) {
     }
 
     /* Get user and credentials */
+    //TODO chenz2
     ssh_client->user = guac_ssh_get_user(client);
 
     /* Open SSH session */
