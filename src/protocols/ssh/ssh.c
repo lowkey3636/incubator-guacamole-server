@@ -254,6 +254,8 @@ void* ssh_client_thread(void* data) {
         /* Already aborted within guac_common_ssh_create_session() */
         return NULL;
     }
+    //TODO
+     guac_client_log(client, GUAC_LOG_INFO,"pass auth : ok" );
 
     pthread_mutex_init(&ssh_client->term_channel_lock, NULL);
 
