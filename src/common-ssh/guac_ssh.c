@@ -354,7 +354,8 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
 
 
         /* Check if password auth is supported on the server */
-        if (strstr(user_authlist, "password") != NULL) {
+        //TODO
+        if (strstr(user_authlist, "password") != NULL  || strstr(user_authlist, "keyboard-interactive") != NULL) {
 
              guac_client_log(client, GUAC_LOG_INFO,"222");
 
@@ -379,13 +380,12 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
         //还是要你去输入密码
 
         /* Check if keyboard-interactive auth is supported on the server */
+        /*
         if (strstr(user_authlist, "keyboard-interactive") != NULL) {
 
-            /* Attempt keyboard-interactive auth using provided password */
             if (libssh2_userauth_keyboard_interactive(session, username,
                         &guac_common_ssh_kbd_callback)) {
 
-                /* Abort on failure */
                 char* error_message;
                 libssh2_session_last_error(session, &error_message, NULL, 0);
                 guac_client_abort(client,
@@ -396,9 +396,8 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
                 return 1;
             }
 
-            /* Keyboard-interactive authentication succeeded */
             return 0;
-        }
+        }*/
 
         /* No known authentication types available */
         guac_client_abort(client, GUAC_PROTOCOL_STATUS_CLIENT_UNAUTHORIZED,
