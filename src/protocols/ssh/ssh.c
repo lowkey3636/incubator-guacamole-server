@@ -273,9 +273,10 @@ void* ssh_client_thread(void* data) {
 
         /* Create SSH session specific for SFTP */
         guac_client_log(client, GUAC_LOG_DEBUG, "Reconnecting for SFTP...");
+        /*
         ssh_client->sftp_session =
             guac_common_ssh_create_session(client, settings->hostname,
-                    settings->port, ssh_client->user);
+                    settings->port, ssh_client->user);*/
         if (ssh_client->sftp_session == NULL) {
             /* Already aborted within guac_common_ssh_create_session() */
             return NULL;
