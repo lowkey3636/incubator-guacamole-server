@@ -20,6 +20,7 @@
 #include "guac_ssh.h"
 #include "guac_ssh_key.h"
 #include "guac_ssh_user.h"
+#include "terminal.h"
 
 #include <guacamole/client.h>
 #include <libssh2.h>
@@ -346,6 +347,7 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
                     "Public key authentication failed: %s", error_message);
 
             return 1;
+
 
         }
 

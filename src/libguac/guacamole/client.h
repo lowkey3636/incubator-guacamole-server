@@ -287,6 +287,7 @@ void guac_client_free(guac_client* client);
 void guac_client_log(guac_client* client, guac_client_log_level level,
         const char* format, ...);
 
+
 /**
  * Writes a message in the log used by the given client. The logger used will
  * normally be defined by guacd (or whichever program loads the proxy client)
