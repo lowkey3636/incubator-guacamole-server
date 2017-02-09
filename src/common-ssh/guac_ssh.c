@@ -360,12 +360,17 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
             if (libssh2_userauth_password(session, username, password)) {
 
                 /* Abort on failure */
+                /*
                 char* error_message;
                 libssh2_session_last_error(session, &error_message, NULL, 0);
                 guac_client_abort(client,
                         GUAC_PROTOCOL_STATUS_CLIENT_UNAUTHORIZED,
                         "Password authentication failed: %s", error_message);
-
+                */
+                //TODO chenz2
+                 guac_ssh_client* ssh_client = (guac_ssh_client*) client->data;
+                 guac_ssh_settings* settings = ssh_client->settings;
+                 settings->password = NULL;
                 return 1;
             }
 
@@ -526,9 +531,6 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
     /* Attempt authentication */
     if (guac_common_ssh_authenticate(common_session)) {
         //认证失败 释放掉session内存
-        guac_ssh_client* ssh_client = (guac_ssh_client*) client->data;
-        guac_ssh_settings* settings = ssh_client->settings;
-        settings->password = NULL;
 
         return common_session;
         //free(common_session);
