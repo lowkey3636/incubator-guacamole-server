@@ -46,6 +46,7 @@ typedef struct guac_common_ssh_session {
      */
     LIBSSH2_SESSION* session;
 
+    char* pwd;
     //验证状态
     int authenticate_status;
 

@@ -270,7 +270,7 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
     char* password = common_session->user->password;
     guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  prompts [0-1]:[%s] ",prompts[0].text);
     guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  password [%s] ",password);
-    guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  num_prompts [%i] ",num_prompts);
+    guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  pwd [%s] ",common_session->pwd);
 
 
 
@@ -536,6 +536,7 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
     common_session->user = user;
     common_session->session = session;
     common_session->fd = fd;
+    common_session->pwd = pwd;
     common_session -> authenticate_status = 0;
     /* Attempt authentication */
     //TODO chenz2
