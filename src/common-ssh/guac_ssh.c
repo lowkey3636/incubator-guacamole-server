@@ -351,7 +351,7 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
     else if (password != NULL) {
 
         //如果密码不为空,那么 就去校验.
-       .
+
 
         /* Check if password auth is supported on the server */
         if (strstr(user_authlist, "password") != NULL) {
@@ -526,7 +526,10 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
     /* Attempt authentication */
     if (guac_common_ssh_authenticate(common_session)) {
         //认证失败 释放掉session内存
-        client->settings->password = NULL;
+        guac_ssh_client* ssh_client = (guac_ssh_client*) client->data;
+        guac_ssh_settings* settings = ssh_client->settings;
+        settings->password = NULL;
+
         return common_session;
         //free(common_session);
         //close(fd);
