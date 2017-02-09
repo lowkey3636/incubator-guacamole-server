@@ -218,7 +218,7 @@ void* ssh_client_thread(void* data) {
     /* Get user and credentials */
     ssh_client->user = guac_ssh_get_user(client);
     /* Open SSH session */
-    char* pwd = guac_terminal_prompt(ssh_client->term,"password again? 1", false)
+    char* pwd = guac_terminal_prompt(ssh_client->term,"password again? 1", false);
     ssh_client->session = guac_common_ssh_create_session(client, settings->hostname, settings->port, ssh_client->user, pwd);
     guac_client_log(client, GUAC_LOG_INFO, "##########first authenticate:::  %i#########",ssh_client->session->authenticate_status);
 
