@@ -217,6 +217,7 @@ void* ssh_client_thread(void* data) {
     ssh_client->user = guac_ssh_get_user(client);
 
     //TODO chenz2
+    int i ;
     for(i=0;i<5;i++){
             settings->password = guac_terminal_prompt(ssh_client->term,
                             "git test Password: ", false);
