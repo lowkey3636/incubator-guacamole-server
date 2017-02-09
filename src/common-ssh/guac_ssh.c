@@ -383,7 +383,7 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
              guac_client_log(client, GUAC_LOG_INFO,"chenz2:start auth!!!   [%s]",password);
 
             /* Attempt password authentication */
-            if(libssh2_userauth_keyboard_interactive(session, username,&guac_common_ssh_kbd_callback)){
+            if(libssh2_userauth_keyboard_interactive_ex(session, username,strlen(username),&guac_common_ssh_kbd_callback)){
             //if (libssh2_userauth_password(session, username, password)) {
 
                 /* Abort on failure */
