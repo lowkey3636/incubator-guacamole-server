@@ -524,8 +524,9 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
     common_session->fd = fd;
 
     /* Attempt authentication */
+    //TODO chenz2
     if (guac_common_ssh_authenticate(common_session)) {
-        //认证失败 释放掉session内存
+        //认证失败 密码设置为空 继续进入 输入密码情况?
 
         return common_session;
         //free(common_session);
