@@ -220,13 +220,15 @@ void* ssh_client_thread(void* data) {
     /* Open SSH session */
     ssh_client->session = guac_common_ssh_create_session(client,
             settings->hostname, settings->port, ssh_client->user);
+    //啥时候清空密码,让我 在
+    /*
+            guac_ssh_client* ssh_client = (guac_ssh_client*) client->data;
+            guac_ssh_settings* settings = ssh_client->settings;
+            settings->password = NULL;
+            ssh_client->user = guac_ssh_get_user(client);
+    */
     if (ssh_client->session == NULL) {
         /* Already aborted within guac_common_ssh_create_session() */
-        //TODO chenz2
-       guac_ssh_client* ssh_client = (guac_ssh_client*) client->data;
-       guac_ssh_settings* settings = ssh_client->settings;
-       settings->password = NULL;
-       ssh_client->user = guac_ssh_get_user(client);
         return NULL;
     }
 

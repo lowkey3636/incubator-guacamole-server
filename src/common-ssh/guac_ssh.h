@@ -46,6 +46,9 @@ typedef struct guac_common_ssh_session {
      */
     LIBSSH2_SESSION* session;
 
+    //验证状态
+    int authenticate_status;
+
     /**
      * The file descriptor of the socket being used for the SSH connection.
      */

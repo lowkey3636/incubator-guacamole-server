@@ -527,7 +527,7 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
     //TODO chenz2
     if (guac_common_ssh_authenticate(common_session)) {
         //认证失败 密码设置为空 继续进入 输入密码情况?
-
+        common_session -> authenticate_status = 1;
         return common_session;
         //free(common_session);
         //close(fd);
