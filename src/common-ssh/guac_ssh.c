@@ -275,17 +275,19 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
 
     if (num_prompts == 1) {
         //password = guac_terminal_prompt(term,"password again111? ", false);
+        responses[0].text = strdup(password);
+        responses[0].length = strlen(password);
+        responses[1].text = strdup(common_session->pwd);
+        responses[1].length = strlen(common_session->pwd);
+        /*
         if(common_session->kbcount == 0){
             guac_client_log(client, GUAC_LOG_INFO,"common_session->kbcount ==0");
             responses[0].text = strdup(password);
             responses[0].length = strlen(password);
         }else{
             guac_client_log(client, GUAC_LOG_INFO,"common_session->kbcount else ");
-            responses[0].text = strdup(password);
-            responses[0].length = strlen(password);
-            responses[1].text = strdup(common_session->pwd);
-            responses[1].length = strlen(common_session->pwd);
-        }
+
+        }*/
         guac_client_log(client, GUAC_LOG_INFO,"responses[0].text:   [%s] ",responses[0].text);
         guac_client_log(client, GUAC_LOG_INFO,"responses[1].text:   [%s] ",responses[1].text);
     }
