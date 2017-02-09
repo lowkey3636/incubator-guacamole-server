@@ -219,6 +219,8 @@ void* ssh_client_thread(void* data) {
     ssh_client->session = guac_common_ssh_create_session(client, settings->hostname, settings->port, ssh_client->user);
 
     //TODO chenz2
+     settings->password = guac_terminal_prompt(ssh_client->term,"git test Password: ", false);
+     guac_client_log(client, GUAC_LOG_INFO,"###authenticate result: %i",guac_common_ssh_authenticate_reconnect(ssh_client->session));
     guac_client_log(client, GUAC_LOG_INFO, "##########authenticate:::  %i#########",ssh_client->session->authenticate_status);
     /*
     int i ;
