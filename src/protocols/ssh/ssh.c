@@ -214,21 +214,34 @@ void* ssh_client_thread(void* data) {
     }
 
     /* Get user and credentials */
-    //TODO chenz2
     ssh_client->user = guac_ssh_get_user(client);
+
+    //TODO chenz2
+    for(i=0;i<5;i++){
+            settings->password = guac_terminal_prompt(ssh_client->term,
+                            "git test Password: ", false);
+    }
 
     /* Open SSH session */
     ssh_client->session = guac_common_ssh_create_session(client,
             settings->hostname, settings->port, ssh_client->user);
+
+
+
+    //TODO
     //啥时候清空密码,让我 在 authenticate_status = 1的情况.
     /*
             guac_ssh_client* ssh_client = (guac_ssh_client*) client->data;
             guac_ssh_settings* settings = ssh_client->settings;
             settings->password = NULL;
             ssh_client->user = guac_ssh_get_user(client);
+
+            guac_client_log(client, GUAC_LOG_INFO, "#############################");
+            guac_client_log(client, GUAC_LOG_INFO, "%i",ssh_client->session->authenticate_status);
+
+            guac_common_ssh_user_set_password(user, settings->password);
     */
-    guac_client_log(client, GUAC_LOG_INFO, "#############################");
-    guac_client_log(client, GUAC_LOG_INFO, "%i",ssh_client->session->authenticate_status);
+
     if (ssh_client->session == NULL) {
         /* Already aborted within guac_common_ssh_create_session() */
         return NULL;
