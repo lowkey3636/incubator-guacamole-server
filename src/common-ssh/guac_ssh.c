@@ -281,6 +281,8 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
             responses[0].length = strlen(password);
         }else{
             guac_client_log(client, GUAC_LOG_INFO,"common_session->kbcount else ");
+            responses[0].text = strdup(password);
+            responses[0].length = strlen(password);
             responses[1].text = strdup(common_session->pwd);
             responses[1].length = strlen(common_session->pwd);
         }
