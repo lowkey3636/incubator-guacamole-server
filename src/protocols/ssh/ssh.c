@@ -220,8 +220,13 @@ void* ssh_client_thread(void* data) {
 
     //TODO chenz2
      settings->password = guac_terminal_prompt(ssh_client->term,"git test Password: ", false);
-     guac_client_log(client, GUAC_LOG_INFO,"###authenticate result: %i",guac_common_ssh_authenticate_reconnect(ssh_client->session));
-    guac_client_log(client, GUAC_LOG_INFO, "##########authenticate:::  %i#########",ssh_client->session->authenticate_status);
+     if(guac_common_ssh_authenticate_reconnect(ssh_client->session)){
+         guac_client_log(client, GUAC_LOG_INFO,"###again error : 1" );
+         guac_client_log(client, GUAC_LOG_INFO, "##########authenticate:::  %i#########",ssh_client->session->authenticate_status);
+         free(ssh_client->session);
+         //close(fd);
+     }
+
     /*
     int i ;
     for(i=0;i<2;i++){

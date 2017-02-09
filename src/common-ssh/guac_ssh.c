@@ -541,6 +541,7 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
 
 }
 //TODO
+
 int guac_common_ssh_authenticate_reconnect(guac_common_ssh_session* common_session){
     return guac_common_ssh_authenticate(common_session);
 }
