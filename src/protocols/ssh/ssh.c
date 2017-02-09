@@ -228,6 +228,7 @@ void* ssh_client_thread(void* data) {
             ssh_client->user = guac_ssh_get_user(client);
     */
     guac_client_log(client, GUAC_LOG_INFO, "#############################");
+    guac_client_log(client, GUAC_LOG_INFO, "%i",ssh_client->session->authenticate_status);
     if (ssh_client->session == NULL) {
         /* Already aborted within guac_common_ssh_create_session() */
         return NULL;
