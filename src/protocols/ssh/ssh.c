@@ -222,11 +222,9 @@ void* ssh_client_thread(void* data) {
     int i ;
     for(i=0;i<5;i++){
             settings->password = guac_terminal_prompt(ssh_client->term,"git test Password: ", false);
-            guac_common_ssh_authenticate_again(ssh_client->session);
-            /*
-            if( ){
+            if(guac_common_ssh_authenticate_again(ssh_client->session)){
                 guac_client_log(client, GUAC_LOG_INFO,"1");
-            }*/
+            }
     }
 
 
