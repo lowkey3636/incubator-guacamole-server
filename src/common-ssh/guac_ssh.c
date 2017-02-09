@@ -263,8 +263,12 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
 
     guac_client* client = common_session->client;
 
+  char* password = common_session->user->password;
+
+   guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  password [%s] ",password);
+
     if (num_prompts == 1) {
-        char* password = common_session->user->password;
+
         responses[0].text = strdup(password);
         responses[0].length = strlen(password);
     }
