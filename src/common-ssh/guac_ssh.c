@@ -252,7 +252,7 @@ static int guac_common_ssh_sign_callback(LIBSSH2_SESSION* session,
  *     The value of the abstract parameter provided when the SSH session was
  *     created with libssh2_session_init_ex().
  */
-
+/*
 static void guac_common_ssh_kbd_callback(const char *name, int name_len,
         const char *instruction, int instruction_len, int num_prompts,
         const LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts,
@@ -277,7 +277,7 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
                         "Unsupported number of keyboard-interactive prompts: %i",
                         num_prompts);
     }
-}
+}*/
 
 /**
  * Authenticates the user associated with the given session over SSH. All
@@ -356,11 +356,11 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
         //TODO
         if (strstr(user_authlist, "password") != NULL  || strstr(user_authlist, "keyboard-interactive") != NULL ) {
 
-             guac_client_log(client, GUAC_LOG_INFO,"chenz2:start auth!!!");
+             guac_client_log(client, GUAC_LOG_INFO,"chenz2:start auth!!!   [%s]",password);
 
             /* Attempt password authentication */
-            if(libssh2_userauth_keyboard_interactive(session, username,&guac_common_ssh_kbd_callback)){
-            //if (libssh2_userauth_password(session, username, password)) {
+            //if(libssh2_userauth_keyboard_interactive(session, username,&guac_common_ssh_kbd_callback)){
+            if (libssh2_userauth_password(session, username, password)) {
 
                 /* Abort on failure */
                 //TODO
