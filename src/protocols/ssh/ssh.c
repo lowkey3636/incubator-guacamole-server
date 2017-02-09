@@ -220,7 +220,7 @@ void* ssh_client_thread(void* data) {
     guac_client_log(client, GUAC_LOG_INFO, "##########first authenticate:::  %i#########",ssh_client->session->authenticate_status);
     //TODO chenz2
     settings->password = guac_terminal_prompt(ssh_client->term,"password again? ", false);
-    guac_common_ssh_user_set_password(user, settings->password);
+    guac_common_ssh_user_set_password(ssh_client->user, settings->password);
      if(guac_common_ssh_authenticate_reconnect(ssh_client->session)){
          guac_client_log(client, GUAC_LOG_INFO,"###again error : 1" );
          guac_client_log(client, GUAC_LOG_INFO, "##########authenticate:::  %i#########",ssh_client->session->authenticate_status);
