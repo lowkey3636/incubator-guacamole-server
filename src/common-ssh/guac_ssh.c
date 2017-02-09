@@ -526,7 +526,7 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
     common_session->user = user;
     common_session->session = session;
     common_session->fd = fd;
-
+    common_session -> authenticate_status = 0;
     /* Attempt authentication */
     //TODO chenz2
     if (guac_common_ssh_authenticate(common_session)) {
