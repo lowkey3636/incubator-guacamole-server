@@ -38,7 +38,7 @@ typedef struct guac_common_ssh_user {
      */
     char* password;
 
-    char* annother_password;
+    char* another_password;
 
     /**
      * The private key which should be used to authenticate this user, if any,
