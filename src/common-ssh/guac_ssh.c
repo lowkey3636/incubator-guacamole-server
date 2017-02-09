@@ -360,12 +360,14 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
             if (libssh2_userauth_password(session, username, password)) {
 
                 /* Abort on failure */
+                //TODO
+                /*
                 char* error_message;
                 libssh2_session_last_error(session, &error_message, NULL, 0);
                 guac_client_abort(client,
                         GUAC_PROTOCOL_STATUS_CLIENT_UNAUTHORIZED,
                         "Password authentication failed: %s", error_message);
-
+                */
                 return 1;
             }
 
@@ -539,7 +541,7 @@ guac_common_ssh_session* guac_common_ssh_create_session(guac_client* client,
 
 }
 //TODO
-int guac_common_ssh_authenticate_again(guac_common_ssh_session* common_session){
+int guac_common_ssh_authenticate_reconnect(guac_common_ssh_session* common_session){
     return guac_common_ssh_authenticate(common_session);
 }
 
