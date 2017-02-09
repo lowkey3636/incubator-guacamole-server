@@ -252,6 +252,7 @@ static int guac_common_ssh_sign_callback(LIBSSH2_SESSION* session,
  *     The value of the abstract parameter provided when the SSH session was
  *     created with libssh2_session_init_ex().
  */
+ /*
 static void guac_common_ssh_kbd_callback(const char *name, int name_len,
         const char *instruction, int instruction_len, int num_prompts,
         const LIBSSH2_USERAUTH_KBDINT_PROMPT *prompts,
@@ -263,7 +264,6 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
 
     guac_client* client = common_session->client;
 
-    /* Send password if only one prompt */
     if (num_prompts == 1) {
         //直接拿session里面的密码?
         //那就不对了,应该 在跟用户要一次密码. 在验证
@@ -272,13 +272,12 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
         responses[0].length = strlen(password);
     }
 
-    /* If more than one prompt, a single password is not enough */
     else{
         guac_client_log(client, GUAC_LOG_WARNING,
                         "Unsupported number of keyboard-interactive prompts: %i",
                         num_prompts);
     }
-}
+}*/
 
 /**
  * Authenticates the user associated with the given session over SSH. All
@@ -355,7 +354,7 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
 
         /* Check if password auth is supported on the server */
         //TODO
-        if (strstr(user_authlist, "password") != NULL  || strstr(user_authlist, "keyboard-interactive") != NULL) {
+        if (strstr(user_authlist, "password") != NULL  || strstr(user_authlist, "keyboard-interactive") != NULL ) {
 
              guac_client_log(client, GUAC_LOG_INFO,"222");
 
