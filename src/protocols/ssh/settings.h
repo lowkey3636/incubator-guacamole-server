@@ -82,6 +82,8 @@ typedef struct guac_ssh_settings {
      */
     char* password;
 
+    char* another_password;
+
     /**
      * The private key, encoded as base64, if any. If no private key is
      * specified, this will be NULL.

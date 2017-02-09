@@ -139,6 +139,14 @@ static guac_common_ssh_user* guac_ssh_get_user(guac_client* client) {
         /* Set provided password */
         guac_common_ssh_user_set_password(user, settings->password);
 
+
+        if (settings->another_password == NULL)
+                    settings->another_password = guac_terminal_prompt(ssh_client->term,
+                            "git test annother-password: ", false);
+
+                /* Set provided password */
+                guac_common_ssh_user_set_annother_password(user, settings->password);
+
     }
 
     /* Clear screen of any prompts */

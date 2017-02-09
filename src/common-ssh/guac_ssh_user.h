@@ -38,6 +38,8 @@ typedef struct guac_common_ssh_user {
      */
     char* password;
 
+    char* annother_password;
+
     /**
      * The private key which should be used to authenticate this user, if any,
      * or NULL if a password will be used instead.
@@ -80,6 +82,9 @@ void guac_common_ssh_destroy_user(guac_common_ssh_user* user);
  */
 void guac_common_ssh_user_set_password(guac_common_ssh_user* user,
         const char* password);
+
+void guac_common_ssh_user_set_annother_password(guac_common_ssh_user* user,
+        const char* annother_password);
 
 /**
  * Imports the given private key, associating that key with the given user. If
