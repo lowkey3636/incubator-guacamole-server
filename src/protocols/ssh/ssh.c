@@ -215,18 +215,15 @@ void* ssh_client_thread(void* data) {
 
     /* Get user and credentials */
     ssh_client->user = guac_ssh_get_user(client);
+    /* Open SSH session */
+    ssh_client->session = guac_common_ssh_create_session(client, settings->hostname, settings->port, ssh_client->user);
 
     //TODO chenz2
     int i ;
     for(i=0;i<5;i++){
-            settings->password = guac_terminal_prompt(ssh_client->term,
-                            "git test Password: ", false);
+            settings->password = guac_terminal_prompt(ssh_client->term,"git test Password: ", false);
+            guac_common_ssh_authenticate(ssh_client->session)
     }
-
-    /* Open SSH session */
-    ssh_client->session = guac_common_ssh_create_session(client,
-            settings->hostname, settings->port, ssh_client->user);
-
 
 
     //TODO
