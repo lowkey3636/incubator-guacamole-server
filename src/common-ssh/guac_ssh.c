@@ -272,7 +272,7 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
     guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  password [%s] ",password);
     guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  pwd [%s] ",common_session->pwd);
     guac_client_log(client, GUAC_LOG_INFO,"kbd_callback:  kbcount [%i] ",common_session->kbcount);
-    common_session->kbcount = common_session->kbcount + 1;
+
     if (num_prompts == 1) {
         //password = guac_terminal_prompt(term,"password again111? ", false);
         if(common_session->kbcount == 0){
@@ -292,6 +292,7 @@ static void guac_common_ssh_kbd_callback(const char *name, int name_len,
                         "Unsupported number of keyboard-interactive prompts: %i",
                         num_prompts);
     }
+    common_session->kbcount = common_session->kbcount + 1;
 }
 
 /**
